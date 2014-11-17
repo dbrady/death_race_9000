@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', '~> 3.4'
 gem 'cancan', '~> 1.6'
 
+gem 'andand', '~> 1.3'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -36,6 +38,7 @@ group :development do
   gem 'rspec-rails', '~> 3.1'
   gem 'guard', '~> 2.8'
   gem 'guard-rspec', '~> 4.3'
+  gem 'thin', '~> 1.6'
 end
 
 # Use ActiveModel has_secure_password

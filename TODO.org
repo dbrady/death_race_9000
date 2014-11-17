@@ -44,3 +44,14 @@
 - [ ] thin
 - [ ] rack?
 - [ ] tmux
+
+* Devise Crap
+
+** Adding extra fields
+Hacky way: monkeypatch Devise, here:
+http://www.jacopretorius.net/2014/03/adding-custom-fields-to-your-devise-user-model-in-rails-4.html
+
+Proper way: write your own sanitizer and register it with Devise:
+http://blog.12spokes.com/web-design-development/adding-custom-fields-to-your-devise-user-model-in-rails-4/
+^ HOWEVER, this page is 404 so screw it, we're monkeypatching up in
+this bizzle
