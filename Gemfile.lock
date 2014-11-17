@@ -118,6 +118,7 @@ GEM
       json (~> 1.4)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    role_model (0.8.1)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -191,6 +192,7 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 4.1.7)
+  role_model (~> 0.8)
   rspec (~> 3.1)
   rspec-rails (~> 3.1)
   sass-rails (~> 4.0.3)

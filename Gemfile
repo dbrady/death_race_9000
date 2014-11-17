@@ -16,7 +16,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'devise', '~> 3.4'
 gem 'cancan', '~> 1.6'
-
+gem 'role_model', '~> 0.8'
 gem 'andand', '~> 1.3'
 
 # Use jquery as the JavaScript library

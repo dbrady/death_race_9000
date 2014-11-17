@@ -27,4 +27,19 @@ RSpec.describe User, :type => :model do
       expect(bob.full_name).to eq("Bob Dobson")
     end
   end
+
+  describe "roles management" do
+    it "starts with no roles set by default" do
+      expect(bob).to_not have_role :admin
+    end
+
+    context "with admin and editor roles set" do
+      it "knows which roles are set" do
+        bob.roles = [:admin, :editor]
+        expect(bob).to have_role :admin
+        expect(bob).to have_role :editor
+        expect(bob).to have_all_roles :admin, :editor
+      end
+    end
+  end
 end
