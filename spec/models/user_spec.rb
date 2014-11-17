@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  let(:bob) { User.new(first_name: "Bob", last_name: "Dobson", email: "bob.dobson.42@example.com", password: "The cake is a lie") }
+  let(:bob) { User.new(first_name: "Bob", last_name: "Dobson", email: "bob.dobson.42@example.com", password: "The cake is a lie", status: :alive) }
 
   describe "validations" do
     let(:invalid_user) { User.new }
@@ -18,6 +18,27 @@ RSpec.describe User, :type => :model do
     context "wtih valid object" do
       it "is valid" do
         expect(bob).to be_valid
+      end
+    end
+  end
+
+  describe "#status" do
+    %i(alive infected zombie dead).each do |status|
+      context "with valid status '#{status}'" do
+        it "is valid" do
+          bob.status = status
+          expect(bob).to be_valid
+        end
+      end
+
+      %w(sick crazy healthy funny).each do |status|
+        context "with invalid status '#{status}'" do
+          it "is not valid" do
+            bob.status = status
+            expect(bob).to_not be_valid
+            expect(bob.errors.messages[:status]).to include("is not included in the list")
+          end
+        end
       end
     end
   end

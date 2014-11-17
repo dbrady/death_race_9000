@@ -1,8 +1,9 @@
-* Death Race 9000 TODO [0/11]
-- [ ] Ensure login/logout/signup work
-- [ ] Differentiate admin users from regular rabble (CanCan)
+* Death Race 9000 TODO [2/11]
+- [X] Ensure login/logout/signup work
+- [X] Differentiate admin users from regular rabble (CanCan)
+- [ ] Get a demo of session[:flash] working
 - [ ] Add Twitter bootstrap to make it look purty
-- [ ] Add a relational column?
+- [ ] Add any relational column, something tweakable via jquery from homepage
 - [ ] Test views
 - [ ] Get a coffeescript view up and running--perhaps user tags rel?
 
@@ -38,12 +39,18 @@
   was caught alone in the outhouse and attacked! Never abandon the
   buddy system!"
 - [ ] Bonus bonus: A buddy system.
+- [ ] Possible idea: track time bitten, infected, dead,
+  zombified--old zombies lose hit points as they rot and fall apart,
+  etc
 
-* Gems/Tools Wanted [/]
-- [ ] andand
-- [ ] thin
-- [ ] rack?
-- [ ] tmux
+
+* Gems/Tools Wanted [4/4]
+- [X] andand
+- [X] thin
+- [X] rack?
+- [X] tmux
+- [ ] Need tmux setup from poo or home machine
+- [ ] Need emacs setup from poo or home machine
 
 * Devise Crap
 

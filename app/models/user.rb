@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :status, inclusion: {in: [:alive, :infected, :zombie, :dead]}
 
   include RoleModel
   roles :admin, :moderator, :editor, :user
