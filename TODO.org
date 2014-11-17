@@ -1,0 +1,7 @@
+* Death Race 9000 TODO [0/3]
+- [ ] Ensure login/logout/signup work
+- [ ] Differentiate admin users from regular rabble (CanCan)
+- [ ] Add Twitter bootstrap to make it look purty
+- [ ] Add a relational column?
+- [ ] Test views
+- [ ] Get a coffeescript view up and running--perhaps user tags rel?
