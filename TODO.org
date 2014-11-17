@@ -1,7 +1,46 @@
-* Death Race 9000 TODO [0/3]
+* Death Race 9000 TODO [0/11]
 - [ ] Ensure login/logout/signup work
 - [ ] Differentiate admin users from regular rabble (CanCan)
 - [ ] Add Twitter bootstrap to make it look purty
 - [ ] Add a relational column?
 - [ ] Test views
 - [ ] Get a coffeescript view up and running--perhaps user tags rel?
+
+- [ ] Stoopid Feature: Death Race 9000 is actually a zombie life cycle
+  game. The list of users shows names plus a status column showing
+  "ALIVE", "INFECTED", "DEAD", or "ZOMBIE". There should be some time
+  counter that allows random zombie users to attack other users, and
+  this should show in the flash. Hehehe. Also it should change the
+  user's name to a zombie-sounding name like "David Brady" ->
+  "DAAAAVID BRRRRRRAGHRBL", "Brian Hornady" -> "BRAAAAAINS HORRRRARRR"
+  etc. This should be reversible so an admin can undo the damage and
+  reset the name. Also the whole mess should be easily disable-able so
+  that when we sit down to do real work I can make them laugh and then
+  turn it off.
+- [ ] Alive people will randomly search 20%, barricade 79%, or use the
+  bathroom 1%. Searching gives a chance to find a weapon. Barricading
+  increases resistance to zombie attack. E.g. "Sarah is attacked by 5
+  zombies, but she is hiding behind 7 meters of barricade with a
+  shotgun. She dspatched BRAAAAAINS HORRRARRRR and DAAAVID
+  BRRRRAGHRBL. The remaning 3 zombies damaged her barricade. She now
+  has 4 meters of barricade." (Food for thought: this makes a better
+  CLI turn/based game, like something you'd find in Land of Lisp,
+  that maybe a web game. Dunno.)
+- [ ] State machine:
+  - [ ] ALIVE -> ALIVE.
+  - [ ] ALIVE -> attacked by 1 zombie -> INFECTED -> random time -> ZOMBIE
+  - [ ] ALIVE -> attacked by n zombies -> DEAD -> random time ->
+    ZOMBIE
+  - [ ] ZOMBIE ->
+- [ ] Bonus: There should be a 1% chance at any given time that an
+  alive person's status is represented as a brown "POOPIN". If that
+  person gets attacked, the flash message should reflect that "Bob
+  was caught alone in the outhouse and attacked! Never abandon the
+  buddy system!"
+- [ ] Bonus bonus: A buddy system.
+
+* Gems/Tools Wanted [/]
+- [ ] andand
+- [ ] thin
+- [ ] rack?
+- [ ] tmux
