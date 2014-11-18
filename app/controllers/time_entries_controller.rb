@@ -1,10 +1,12 @@
 class TimeEntriesController < ApplicationController
-  before_action :set_time_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_time_entry, only: [:start_timer, :stop_timer, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /time_entries
   # GET /time_entries.json
   def index
     @time_entries = TimeEntry.all
+    @time_entry = TimeEntry.new
   end
 
   # GET /time_entries/1
@@ -19,6 +21,15 @@ class TimeEntriesController < ApplicationController
 
   # GET /time_entries/1/edit
   def edit
+  end
+
+  def start_timer
+    @time_entry.start! and redirect_to :back
+  end
+
+  def stop_timer
+    raise "TDD BIATCH"
+#    @time_entry.start! and redirect_to :back
   end
 
   # POST /time_entries
@@ -69,6 +80,6 @@ class TimeEntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def time_entry_params
-      params.require(:time_entry).permit(:user_id, :task_id, :description, :hours)
+      params.require(:time_entry).permit(:user_id, :task_id, :description, :seconds, :worked_on)
     end
 end

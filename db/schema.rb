@@ -53,12 +53,11 @@ ActiveRecord::Schema.define(version: 20141118153223) do
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
 
   create_table "time_entries", force: true do |t|
-    t.integer  "user_id",                                           null: false
-    t.integer  "task_id",                                           null: false
-    t.date     "worked_on",                                         null: false
-    t.datetime "timer"
-    t.decimal  "hours",       precision: 6, scale: 2, default: 0.0
-    t.decimal  "decimal",     precision: 6, scale: 2, default: 0.0
+    t.integer  "user_id",     null: false
+    t.integer  "task_id",     null: false
+    t.date     "worked_on",   null: false
+    t.integer  "timer"
+    t.integer  "seconds"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"

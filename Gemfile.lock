@@ -198,6 +198,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg
+  pry
   rails (= 4.1.7)
   role_model (~> 0.8)
   rspec (~> 3.1)

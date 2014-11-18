@@ -4,8 +4,8 @@ class CreateTimeEntries < ActiveRecord::Migration
       t.references :user, null: false, index: true
       t.references :task, null: false, index: true
       t.date :worked_on, null: false
-      t.timestamp :timer
-      t.decimal :hours, :decimal, precision: 6, scale: 2, default: 0.0
+      t.integer :timer
+      t.integer :seconds
       t.string :description
 
       t.timestamps

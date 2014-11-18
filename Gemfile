@@ -43,6 +43,7 @@ group :development do
   gem 'guard-rspec', '~> 4.3'
   gem 'thin', '~> 1.6'
   gem 'faker', '~> 1.4'
+  gem "pry"
 end
 
 # Use ActiveModel has_secure_password

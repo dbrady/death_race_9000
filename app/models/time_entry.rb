@@ -9,4 +9,27 @@ class TimeEntry < ActiveRecord::Base
 
   validates :description, presence: true
 
+  before_create :set_the_fricking_worked_on_param_already_i_mean_seriously
+
+  def set_the_fricking_worked_on_param_already_i_mean_seriously
+    self.worked_on ||= Date.today
+  end
+
+  def running?
+    timer
+  end
+
+  def start!
+    update_attribute(:timer, Time.now.to_i)
+  end
+
+  def stop!
+    accumulated_seconds = timer
+    current_time = Time.now.to_i
+    start_time = timer
+    # binding.pry
+    new_seconds = accumulated_seconds + current_time - start_time
+    update_attributes(seconds: new_seconds, timer: nil)
+  end
+
 end

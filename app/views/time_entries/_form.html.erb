@@ -11,22 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :task_id %><br>
-    <%= f.text_field :task_id %>
-  </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
+
   <div class="field">
-    <%= f.label :hours %><br>
-    <%= f.text_field :hours %>
+    <%= f.label :task_id %><br>
+    <%= f.collection_select :task_id, Task.all, :id, :name %>
   </div>
+
+  <div class="field">
+    <%= f.label :seconds %><br>
+    <%= f.text_field :seconds %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

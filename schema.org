@@ -28,46 +28,6 @@ TimeEntry
 
 
 
-So:
-
-people
-----------
-id
-name
-email
-role {admin, employee}
-
-
-customers
-----------
-id
-name
-* buncha other columns
-
-projects
-----------
-id
-customer_id
-name
-
-
-tasks
-----------
-id
-project_id
-name
-
-
-time_entries
-----------
-id
-person_id
-task_id
-worked_on (date)
-time (decimal)
-timer (timestamp)
-description (tinytext)
-
 * Feature List [6/19]
 - [ ] Homepage for employees is time entry list
 - [X] Seed admin, employees, companies, projects, tasks, task_entries?
