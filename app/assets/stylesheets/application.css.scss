@@ -16,3 +16,12 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+table thead tr th {
+  border-bottom: 1px solid #999;
+}
+table tfoot tr td {
+  border-top: 1px solid #999;
+  font-weight: bold;
+}

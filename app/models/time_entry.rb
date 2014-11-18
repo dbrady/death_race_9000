@@ -46,8 +46,6 @@ class TimeEntry < ActiveRecord::Base
     "%d:%02d:%02d" % [hrs, min, sec]
   end
 
-  private
-
   def elapsed_time
     time = seconds || 0
     if running?

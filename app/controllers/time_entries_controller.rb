@@ -6,6 +6,8 @@ class TimeEntriesController < ApplicationController
   # GET /time_entries.json
   def index
     @time_entries = TimeEntry.all.includes(task: :project).order("time_entries.id")
+    @total = TimeEntry.new
+    @total.seconds = @time_entries.map(&:elapsed_time).reduce(&:+)
     @time_entry = TimeEntry.new
   end
 
@@ -66,7 +68,10 @@ class TimeEntriesController < ApplicationController
   # GET /time_entries/get_times.json
   def get_times
     entries = TimeEntry.where(user_id: current_user.id).all
+    @total = TimeEntry.new
+    @total.seconds = entries.map(&:elapsed_time).reduce(&:+)
     times = entries.each_with_object({}) { |entry, hash| hash[entry.id] = entry.display_time }
+    times["total"] = @total.display_time
     render json: times, status: :ok
   end
 
@@ -78,6 +83,24 @@ class TimeEntriesController < ApplicationController
       format.html { redirect_to time_entries_url, notice: 'Time entry was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  require 'csv'
+
+  def export_csv
+    @time_entries = TimeEntry.all.includes(task: :project).order("time_entries.id")
+    @total = TimeEntry.new
+    @total.seconds = @time_entries.map(&:elapsed_time).reduce(&:+)
+
+    csv_output = CSV.generate do |csv|
+      csv << ["Task", "User", "Description", "Time", "Worked on"]
+      @time_entries.each do |entry|
+        csv << [entry.task.fully_qualified_name, entry.user.full_name, entry.description, entry.display_time, entry.worked_on]
+      end
+      csv << ["Total", "", "", @total.display_time,""]
+    end
+
+    render text: csv_output.inspect
   end
 
   private
