@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :status, inclusion: {in: [:alive, :infected, :zombie, :dead]}
+  VALID_STATUSES = %w(alive infected zombie dead)
+  validates :status, inclusion: {in: VALID_STATUSES, message: "is not included in the list: #{VALID_STATUSES.inspect}"}
 
   include RoleModel
   roles :admin, :moderator, :editor, :user
