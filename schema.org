@@ -1,0 +1,92 @@
+People seem to have roles: Admin, Customer, Employee
+Require login (Devise, Cancan)
+
+Admin can manage everything, but specifically can create Customers and Tasks
+Employee can enter and edit their timesheets
+Ad
+
+
+
+Person
+
+Customer
+
+Project
+- belongs to customer
+
+Task
+- belongs to project
+
+TimeEntry
+- belongs_to person:employee
+- belongs to task
+- worked_on
+- time
+- timer
+- description
+
+
+
+
+So:
+
+people
+----------
+id
+name
+email
+role {admin, employee}
+
+
+customers
+----------
+id
+name
+* buncha other columns
+
+projects
+----------
+id
+customer_id
+name
+
+
+tasks
+----------
+id
+project_id
+name
+
+
+time_entries
+----------
+id
+person_id
+task_id
+worked_on (date)
+time (decimal)
+timer (timestamp)
+description (tinytext)
+
+* Feature List [2/18]
+- [ ] Homepage for employees is time entry list
+- [ ] Seed admin, employees
+- [X] People can log in
+- [X] Import customers from CSV
+- [ ] Projects belong to customers
+- [ ] Tasks belong to Projects
+- [ ] Employees can see Customers, Projects and Tasks
+- [ ] TimeEntry belongs to person and task
+- [ ] Employee can create time entry with set hours
+- [ ] Employee can start timer
+- [ ] Employee can stop timer
+- [ ] Employee can resume timer
+- [ ] Employee can have multiple timers running at once
+- [ ] Employee can delete time entry
+- [ ] Employee can edit time entry
+- [ ] Homepage for admin is report of employee times
+
+Lower:
+- [ ] Have separate users table for login, and user has a polymorphic relationship to people and/or customers so tha disparate entities can log in.
+- [ ] Admins can create employees
+- [ ] Admins can create customers

@@ -1,0 +1,69 @@
+People seem to have roles: Admin, Customer, Employee
+Require login (Devise, Cancan)
+
+Admin can manage everything, but specifically can create Customers and Tasks
+Employee can enter and edit their timesheets
+Ad
+
+
+
+Person
+
+Customer
+
+Project
+- belongs to customer
+
+Task
+- belongs to project
+
+TimeEntry
+- belongs_to person:employee
+- belongs to task
+- worked_on
+- time
+- timer
+- description
+
+
+
+
+So:
+
+people
+----------
+id
+name
+email
+role {admin, employee}
+
+
+customers
+----------
+id
+name
+* buncha other columns
+
+projects
+----------
+id
+customer_id
+name
+
+
+tasks
+----------
+id
+project_id
+name
+
+
+time_entries
+----------
+id
+employee_id -> person:employee
+task_id
+worked_on (date)
+time (decimal)
+timer (timestamp)
+description (tinytext)
