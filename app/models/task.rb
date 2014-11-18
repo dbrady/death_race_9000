@@ -3,4 +3,6 @@ class Task < ActiveRecord::Base
   validates :project_id, presence: true, if: "project.nil?"
   validates :project, presence: true, if: "project_id.nil?"
   validates :name, presence: true
+
+  has_many :time_entries
 end

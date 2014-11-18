@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   include RoleModel
   roles :admin, :employee
 
+  has_many :time_entries
+
   def full_name
     "#{first_name} #{last_name}"
   end

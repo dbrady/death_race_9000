@@ -68,15 +68,15 @@ time (decimal)
 timer (timestamp)
 description (tinytext)
 
-* Feature List [2/18]
+* Feature List [6/19]
 - [ ] Homepage for employees is time entry list
-- [ ] Seed admin, employees
+- [X] Seed admin, employees, companies, projects, tasks, task_entries?
 - [X] People can log in
 - [X] Import customers from CSV
-- [ ] Projects belong to customers
-- [ ] Tasks belong to Projects
+- [X] Projects belong to customers
+- [X] Tasks belong to Projects
 - [ ] Employees can see Customers, Projects and Tasks
-- [ ] TimeEntry belongs to person and task
+- [X] TimeEntry belongs to person and task
 - [ ] Employee can create time entry with set hours
 - [ ] Employee can start timer
 - [ ] Employee can stop timer
