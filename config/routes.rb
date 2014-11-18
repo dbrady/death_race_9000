@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get 'time_entries/get_times' => 'time_entries#get_times', as: 'time_entries_times', format: :json
   resources :time_entries
-  put 'time_start/:id/stop' => 'time_entries#start_timer', as: 'start_time_entry'
+  put 'time_entries/:id/start' => 'time_entries#start_timer', as: 'start_time_entry'
   put 'time_entries/:id/stop' => 'time_entries#stop_timer', as: 'stop_time_entry'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

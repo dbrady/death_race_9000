@@ -24,12 +24,37 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def stop!
-    accumulated_seconds = timer
-    current_time = Time.now.to_i
-    start_time = timer
-    # binding.pry
-    new_seconds = accumulated_seconds + current_time - start_time
+    new_seconds = elapsed_time
     update_attributes(seconds: new_seconds, timer: nil)
   end
 
+  def task_name
+    task.andand.name || ""
+  end
+
+  def project_name
+    task.andand.project_name || ""
+  end
+
+  def display_time
+    seconds = elapsed_time
+    sec = seconds % 60
+    seconds -= sec
+    min = (seconds % 3600)/60
+    seconds -= min * 60
+    hrs = seconds / 3600
+    "%d:%02d:%02d" % [hrs, min, sec]
+  end
+
+  private
+
+  def elapsed_time
+    time = seconds || 0
+    if running?
+      stop = Time.now.to_i
+      start = timer
+      time += (stop - start)
+    end
+    time
+  end
 end

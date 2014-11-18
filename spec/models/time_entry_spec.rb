@@ -31,10 +31,7 @@ RSpec.describe TimeEntry, :type => :model do
     end
   end
 
-  require 'pry'
-
   describe "#stop!" do
-
     it { expect(time_entry).to be_running }
 
     context "when timer is running" do
@@ -47,6 +44,53 @@ RSpec.describe TimeEntry, :type => :model do
         expect {
           time_entry.stop!
         }.to change(time_entry, :seconds) # .by.at_least(900)
+      end
+    end
+  end
+
+  describe "#display_time" do
+    context "with time over 1 hour" do
+      let(:time_entry) { TimeEntry.new seconds: 7200 + 900 + 13 }
+      it "returns 'HH:MM:SS' string" do
+        expect(time_entry.display_time).to eq("2:15:13")
+      end
+    end
+
+    context "with time under 10 seconds" do
+      let(:time_entry) { TimeEntry.new seconds: 3 }
+      it "returns 0-padded 'HH:MM:SS' string" do
+        expect(time_entry.display_time).to eq("0:00:03")
+      end
+    end
+  end
+
+  describe "#task_name" do
+    let(:task) { Task.new name: "Testy" }
+    let(:time_entry) { TimeEntry.new task: task}
+    it "defers to task" do
+      expect(time_entry.task_name).to eq("Testy")
+    end
+
+    context "when task is missing" do
+      let(:time_entry) { TimeEntry.new }
+      it "returns empty string" do
+        expect(time_entry.task_name).to eq("")
+      end
+    end
+  end
+
+  describe "#project_name" do
+    let(:project) { Project.new name: "Arglebargle"}
+    let(:task) { Task.new project: project }
+    let(:time_entry) { TimeEntry.new task: task}
+    it "defers to task" do
+      expect(time_entry.project_name).to eq("Arglebargle")
+    end
+
+    context "when task is missing" do
+      let(:time_entry) { TimeEntry.new }
+      it "returns empty string" do
+        expect(time_entry.project_name).to eq("")
       end
     end
   end

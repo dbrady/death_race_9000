@@ -5,4 +5,8 @@ class Project < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :tasks
+
+  def customer_name
+    customer.andand.name || "(No Customer)"
+  end
 end

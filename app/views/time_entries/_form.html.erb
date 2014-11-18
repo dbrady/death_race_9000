@@ -20,7 +20,7 @@
 
   <div class="field">
     <%= f.label :task_id %><br>
-    <%= f.collection_select :task_id, Task.all, :id, :name %>
+    <%= f.collection_select :task_id, @tasks, :id, :fully_qualified_name %>
   </div>
 
   <div class="field">

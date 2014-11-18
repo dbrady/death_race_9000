@@ -5,7 +5,7 @@ class TimeEntriesController < ApplicationController
   # GET /time_entries
   # GET /time_entries.json
   def index
-    @time_entries = TimeEntry.all
+    @time_entries = TimeEntry.all.includes(task: :project).order("time_entries.id")
     @time_entry = TimeEntry.new
   end
 
@@ -17,10 +17,12 @@ class TimeEntriesController < ApplicationController
   # GET /time_entries/new
   def new
     @time_entry = TimeEntry.new
+    @tasks = Task.all.includes(project: :customer).order("customers.name, projects.name")
   end
 
   # GET /time_entries/1/edit
   def edit
+    @tasks = Task.all.includes(project: :customer).order("customers.name, projects.name")
   end
 
   def start_timer
@@ -28,8 +30,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def stop_timer
-    raise "TDD BIATCH"
-#    @time_entry.start! and redirect_to :back
+    @time_entry.stop! and redirect_to :back
   end
 
   # POST /time_entries
@@ -60,6 +61,13 @@ class TimeEntriesController < ApplicationController
         format.json { render json: @time_entry.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /time_entries/get_times.json
+  def get_times
+    entries = TimeEntry.where(user_id: current_user.id).all
+    times = entries.each_with_object({}) { |entry, hash| hash[entry.id] = entry.display_time }
+    render json: times, status: :ok
   end
 
   # DELETE /time_entries/1
