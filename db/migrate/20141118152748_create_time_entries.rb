@@ -1,7 +1,7 @@
 class CreateTimeEntries < ActiveRecord::Migration
   def change
     create_table :time_entries do |t|
-      t.references :person, null: false, index: true
+      t.references :user, null: false, index: true
       t.references :task, null: false, index: true
       t.date :worked_on, null: false
       t.timestamp :timer

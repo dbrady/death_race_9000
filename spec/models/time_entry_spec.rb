@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe TimeEntry, :type => :model do
-  let(:person) { Person.new }
+  let(:user) { User.new }
   let(:task) { Task.new }
-  let(:time_entry) { TimeEntry.new }
+  let(:time_entry) { TimeEntry.new user: user, task: task }
 
   context "validations" do
-    %i(person task description).each do |attr|
+    %i(user task description).each do |attr|
       it "requires #{attr}" do
         time_entry.send "#{attr}=", nil
         expect(time_entry).to_not be_valid

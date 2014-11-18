@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20141118153223) do
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
 
   create_table "time_entries", force: true do |t|
-    t.integer  "person_id",                                         null: false
+    t.integer  "user_id",                                           null: false
     t.integer  "task_id",                                           null: false
     t.date     "worked_on",                                         null: false
     t.datetime "timer"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 20141118153223) do
     t.datetime "updated_at"
   end
 
-  add_index "time_entries", ["person_id"], name: "index_time_entries_on_person_id", using: :btree
   add_index "time_entries", ["task_id"], name: "index_time_entries_on_task_id", using: :btree
+  add_index "time_entries", ["user_id"], name: "index_time_entries_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
